@@ -18,28 +18,29 @@ int main()
     /* code */
     int n;
     cin >> n;
-    vector<ll> l(n);
+    vector<ll> vec(n);
     REP(i, n)
-        cin >> l[i];
+        cin >> vec[i];
 
-    sort(l.begin(), l.end(), less<ll>());
+    sort(vec.begin(), vec.end());
 
     int ans = 0;
     for (int i = 0; i < n; i++)
     {
         for (int j = i + 1; j < n; j++)
         {
-            for (int k = i + 2; k < n; k++)
+            for (int k = j + 1; k < n; k++)
             {
-                auto a = l[i];
-                auto b = l[j];
-                auto c = l[k];
-                if (a + b < c)
+                auto a = vec[i];
+                auto b = vec[j];
+                auto c = vec[k];
+                if (a != b and b != c and a + b > c)
+                {
                     ans++;
+                }
             }
         }
     }
-
     PRINT(ans);
 
     return 0;
